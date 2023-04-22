@@ -24,6 +24,7 @@
 		84DBF7C329F406E100A8448F /* EmojiPicker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EmojiPicker.entitlements; sourceTree = "<group>"; };
 		84DBF7C929F408AC00A8448F /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		84DBF7CB29F40A7800A8448F /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		84DBF7D129F41D0900A8448F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +41,7 @@
 		84DBF7AE29F406DF00A8448F = {
 			isa = PBXGroup;
 			children = (
+				84DBF7D129F41D0900A8448F /* README.md */,
 				84DBF7B929F406DF00A8448F /* EmojiPicker */,
 				84DBF7B829F406DF00A8448F /* Products */,
 			);
