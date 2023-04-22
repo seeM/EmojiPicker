@@ -7,20 +7,35 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class ViewController: NSViewController, CustomTextViewDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override var representedObject: Any? {
+    @IBOutlet weak var textView: CustomTextView! {
         didSet {
-        // Update the view, if already loaded.
+            textView.customDelegate = self
         }
     }
 
+    private lazy var popover: NSPopover = {
+        let popover = NSPopover()
+        popover.behavior = .transient
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let popoverViewController = storyboard.instantiateController(withIdentifier: "popoverViewController") as! NSViewController
+        popover.contentViewController = popoverViewController
+        return popover
+    }()
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    func textViewDidReceiveRightClick(_ textView: NSTextView) {
+        let event = NSApp.currentEvent!
+        let locationInView = textView.convert(event.locationInWindow, from: nil)
+        let locationInTextView = NSPoint(x: locationInView.x, y: textView.bounds.height - locationInView.y)
+
+        if let textContainer = textView.textContainer,
+           textView.layoutManager?.characterIndex(for: locationInTextView, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil) != NSNotFound {
+            popover.show(relativeTo: NSZeroRect, of: textView, preferredEdge: .maxX)
+        }
+    }
 }
-
