@@ -8,18 +8,17 @@
 import Cocoa
 
 protocol CustomTextViewDelegate: AnyObject {
-    func textViewDidReceiveRightClick(_ textView: NSTextView)
+    func showPicker(_ textView: NSTextView)
 }
 
 class CustomTextView: NSTextView {
     weak var customDelegate: CustomTextViewDelegate?
-
-    override func menu(for event: NSEvent) -> NSMenu? {
-        if event.type == .rightMouseDown {
-            customDelegate?.textViewDidReceiveRightClick(self)
-            return nil
+    
+    override func keyDown(with event: NSEvent) {
+        super.keyDown(with: event)
+        if event.keyCode == 41 && event.modifierFlags.intersection(.deviceIndependentFlagsMask) == .shift {
+            customDelegate?.showPicker(self)
         }
-        return super.menu(for: event)
     }
 }
 

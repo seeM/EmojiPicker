@@ -28,7 +28,7 @@ class ViewController: NSViewController, CustomTextViewDelegate {
         super.viewDidLoad()
     }
 
-    func textViewDidReceiveRightClick(_ textView: NSTextView) {
+    func showPicker(_ textView: NSTextView) {
         let event = NSApp.currentEvent!
         let locationInView = textView.convert(event.locationInWindow, from: nil)
         let locationInTextView = NSPoint(x: locationInView.x, y: textView.bounds.height - locationInView.y)
